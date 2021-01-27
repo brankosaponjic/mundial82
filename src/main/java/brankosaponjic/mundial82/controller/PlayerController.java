@@ -9,6 +9,7 @@ import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/player")
 public class PlayerController {

@@ -4,15 +4,13 @@ import brankosaponjic.mundial82.entity.Manager;
 import brankosaponjic.mundial82.service.ManagerService;
 import brankosaponjic.mundial82.service.PlayerService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/manager")
 public class ManagerController {
 
     private final ManagerService managerService;
@@ -21,12 +19,12 @@ public class ManagerController {
         this.managerService = managerService;
     }
 
-    @GetMapping("/manager/all")
+    @GetMapping("/all")
     public Collection<Manager> findAllManagers() {
         return managerService.findAll();
     }
 
-    @GetMapping("/manager/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Manager> findByIdManager(@PathVariable("id") int id) {
         return managerService.findById(id);
     }
