@@ -2,7 +2,6 @@ package brankosaponjic.mundial82.service;
 
 import brankosaponjic.mundial82.entity.Player;
 import brankosaponjic.mundial82.repository.PlayerRepository;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -48,11 +47,13 @@ public class PlayerService {
 
     public void updatePlayer(int id, Player newPlayer) {
         Optional<Player> player = playerRepository.findById(id);
-        player.ifPresent(pl -> pl.setBackNumber(newPlayer.getBackNumber()));
-        player.ifPresent(pl -> pl.setName(newPlayer.getName()));
-        player.ifPresent(pl -> pl.setPosition(newPlayer.getPosition()));
-        player.ifPresent(pl -> pl.setDayOfBirth(newPlayer.getDayOfBirth()));
-        player.ifPresent(pl -> pl.setTeamId(newPlayer.getTeamId()));
+        player.ifPresent(pl -> {
+            pl.setBackNumber(newPlayer.getBackNumber());
+            pl.setName(newPlayer.getName());
+            pl.setPosition(newPlayer.getPosition());
+            pl.setDayOfBirth(newPlayer.getDayOfBirth());
+            pl.setTeamId(newPlayer.getTeamId());
+        });
         player.ifPresent(playerRepository::save);
     }
 
